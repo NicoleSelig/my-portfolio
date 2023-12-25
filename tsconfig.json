@@ -20,7 +20,7 @@
       }
     ],
     "paths": {
-      "@/*": ["./src/*"],
+      "@/*": ["./*"],
       "contentlayer/generated": ["./.contentlayer/generated"],
       "contentlayer/source-files": ["./.contentlayer/source-files"]
     }
