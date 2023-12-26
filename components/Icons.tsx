@@ -1,5 +1,5 @@
 import * as React from "react";
-import { addClasses } from "../utils";
+import { addClasses } from "../src/app/utils";
 
 type IconProps = {
   className?: string;
