@@ -11,14 +11,10 @@ export type CoverSectionProps = {
 export default function CoverSection({ posts }: CoverSectionProps) {
   const sorted = sortPostsByDate(posts);
   const latestPost = sorted[0];
-  if (latestPost.tags) {
-    console.log(latestPost.tags && latestPost.tags.length > 0);
-  }
-
   return (
     <div className="w-full inline-block">
       <article className="flex flex-col items-start justify-end mx-10 relative h-[85vh]">
-        <Image
+      <Image
           src={latestPost.image.filePath.replace("../public", "")}
           placeholder="blur"
           blurDataURL={latestPost.image.blurhashDataUrl}
