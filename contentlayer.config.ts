@@ -13,7 +13,7 @@ export const Post: DocumentType<string> = defineDocumentType(() => ({
     date: { type: 'date', required: true },
     updated: { type: 'date', required: true },
     description: {type: 'string', required: true},
-    image: {type: 'string', required: true},
+    image: {type: 'image', required: true},
     isPublished: {
       type: 'boolean',
       default: true,
@@ -24,7 +24,7 @@ export const Post: DocumentType<string> = defineDocumentType(() => ({
     },
     tags: {
       type: 'list',
-      of: { type: 'string'},
+      of: { type: 'string' },
     }
   },
   computedFields: {
