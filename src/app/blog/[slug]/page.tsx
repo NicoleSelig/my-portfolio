@@ -46,6 +46,11 @@ const PostLayout = ({ params }: { params: { slug: string } }) => {
           sizes="100vw"
         />
       </div>
+      <PostDetails slug={params.slug} post={post} />
+      <div className="grid grid-cols-12 gap-16 mt-8 px-10">
+            <div className="col-span-4">Toc</div>
+            <div className="col-span-8">Toc</div>
+      </div>
     </article>
   );
 };

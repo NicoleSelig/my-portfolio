@@ -1,9 +1,6 @@
 import { defineDocumentType, DocumentType, makeSource } from 'contentlayer/source-files'
-
-export type Post = {
-  title: { type: 'string', required: true },
-  date: { type: 'date', required: true },
-}
+import {Post as PostData} from 'contentlayer/generated'
+import readingTime, {ReadTimeResults} from 'reading-time'
 
 export const Post: DocumentType<string> = defineDocumentType(() => ({
   name: 'Post',
@@ -28,7 +25,11 @@ export const Post: DocumentType<string> = defineDocumentType(() => ({
     }
   },
   computedFields: {
-    url: { type: 'string', resolve: (post: any) => `/blog/${post._raw.flattenedPath}` },
+    readingTime: {
+      type: "json",
+      resolve: (post: PostData): ReadTimeResults => readingTime(post.body.raw)
+    },
+    url: { type: 'string', resolve: (post: PostData) => `/blog/${post._raw.flattenedPath}` },
   },
 }))
 
