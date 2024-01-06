@@ -1,15 +1,16 @@
 import { defineDocumentType, DocumentType, makeSource } from 'contentlayer/source-files'
-import {Post as PostData} from 'contentlayer/generated'
+import { Post as PostData} from 'contentlayer/generated'
 import readingTime, {ReadTimeResults} from 'reading-time'
 
 export const Post: DocumentType<string> = defineDocumentType(() => ({
   name: 'Post',
   filePathPattern: '**/**/*.mdx',
+  contentType: 'mdx',
   fields: {
     title: { type: 'string', required: true },
     date: { type: 'date', required: true },
     updated: { type: 'date', required: true },
-    description: {type: 'string', required: true},
+    description: {type: 'mdx', required: true},
     image: {type: 'image', required: true},
     isPublished: {
       type: 'boolean',
