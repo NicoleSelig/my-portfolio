@@ -1,6 +1,11 @@
 import { defineDocumentType, DocumentType, makeSource } from 'contentlayer/source-files'
 import { Post as PostData} from 'contentlayer/generated'
 import readingTime, {ReadTimeResults} from 'reading-time'
+import rehypeAutolinkHeadings from "rehype-autolink-headings";
+import rehypePrettyCode from "rehype-pretty-code";
+import rehypeSlug from "rehype-slug";
+import remarkGfm from "remark-gfm";
+import GithubSlugger from "github-slugger"
 
 export const Post: DocumentType<string> = defineDocumentType(() => ({
   name: 'Post',
@@ -10,7 +15,7 @@ export const Post: DocumentType<string> = defineDocumentType(() => ({
     title: { type: 'string', required: true },
     date: { type: 'date', required: true },
     updated: { type: 'date', required: true },
-    description: {type: 'mdx', required: true},
+    description: {type: 'string', required: true},
     image: {type: 'image', required: true},
     isPublished: {
       type: 'boolean',
