@@ -1,5 +1,6 @@
 import { defineDocumentType, DocumentType, makeSource } from 'contentlayer/source-files'
 import { Post as PostData} from 'contentlayer/generated'
+import {Pluggable} from 'unified'
 import readingTime, {ReadTimeResults} from 'reading-time'
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypePrettyCode from "rehype-pretty-code";
@@ -39,4 +40,15 @@ export const Post: DocumentType<string> = defineDocumentType(() => ({
   },
 }))
 
-export default makeSource({ contentDirPath: './blog', documentTypes: [Post] })
+const codeOptions = {
+  theme: 'github-dark',
+  grid: false
+}
+
+export default makeSource({
+  contentDirPath: './blog',
+  documentTypes: [Post],
+  mdx: {
+    remarkPlugins: [remarkGfm], rehypePlugins: [rehypeSlug, [rehypeAutolinkHeadings, {behavior: 'append'}], [rehypePrettyCode, codeOptions]] as Pluggable[]
+  }
+})

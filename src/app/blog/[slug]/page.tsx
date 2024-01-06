@@ -4,6 +4,7 @@ import { allPosts } from "contentlayer/generated";
 import Tag from "../../components/Elements/Tag";
 import Image from "next/image";
 import PostDetails from "../../components/Post/PostDetails";
+import RenderMdx from "../../components/Post/RenderMdx";
 
 export const generateStaticParams = async () =>
   allPosts.map((post) => ({ slug: post._raw.flattenedPath }));
@@ -49,7 +50,9 @@ const PostLayout = ({ params }: { params: { slug: string } }) => {
       <PostDetails slug={params.slug} post={post} />
       <div className="grid grid-cols-12 gap-16 mt-8 px-10">
             <div className="col-span-4">Toc</div>
-            <div className="col-span-8">Toc</div>
+            <div className="col-span-8">
+              <RenderMdx post={post} />
+            </div>
       </div>
     </article>
   );
