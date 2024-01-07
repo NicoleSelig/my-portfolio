@@ -37,11 +37,6 @@ export const Post: DocumentType<string> = defineDocumentType(() => ({
       type: 'list',
       of: { type: 'string' },
     },
-    toc: {
-      type: 'boolean',
-      required: false,
-      default: false
-    }
   },
   computedFields: {
     readingTime: {
