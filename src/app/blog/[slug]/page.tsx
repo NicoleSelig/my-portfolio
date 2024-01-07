@@ -5,6 +5,7 @@ import Tag from "../../components/Elements/Tag";
 import Image from "next/image";
 import PostDetails from "../../components/Post/PostDetails";
 import RenderMdx from "../../components/Post/RenderMdx";
+import { HeadingData } from "@/contentlayer.config";
 
 export const generateStaticParams = async () =>
   allPosts.map((post) => ({ slug: post._raw.flattenedPath }));
@@ -49,7 +50,32 @@ const PostLayout = ({ params }: { params: { slug: string } }) => {
       </div>
       <PostDetails slug={params.slug} post={post} />
       <div className="grid grid-cols-12 gap-16 mt-8 px-10">
-            <div className="col-span-4">Toc</div>
+            <div className="col-span-4">
+              <details className='border-[1px] border-dark border-solid text-dark rounded-lg p-4 sticky top-6
+              max-h-[80vh] over-hidden overflow-y-auto'>
+                <summary className="text-lg font-semibold capitalize cursor-pointer">Table of Contents</summary>
+                <ul className="mt-4 font-in text-base">
+                  {
+                    post.headings.map((heading: HeadingData) => {
+                      return <li key={`#${heading.slug}`} className="py-1">
+                        <a href={`#${heading.slug}`} 
+                          data-level={heading.level}
+                          className="data-[level=two]:pl-0 data[level=two]:pt-2
+                          data-[level=two]:border-t border-solid border-dark/40
+                          data-[level=three]:pl-6
+                          flex items-center justify-start"
+                        > 
+                        {heading.level === 'three' ? 
+                          <span className="flex w-1 h-1 rounded-full bg-dark mr-2">&nbsp;</span> 
+                          : null}
+                          <span>{heading.text}</span>
+                        </a>
+                      </li>
+                    })
+                  }
+                </ul>
+              </details>
+            </div>
             <div className="col-span-8">
               <RenderMdx post={post} />
             </div>

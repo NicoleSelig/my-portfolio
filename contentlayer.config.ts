@@ -7,6 +7,13 @@ import rehypePrettyCode from "rehype-pretty-code";
 import rehypeSlug from "rehype-slug";
 import remarkGfm from "remark-gfm";
 import GithubSlugger from "github-slugger"
+import { parseJSON } from 'date-fns/fp';
+
+export type HeadingData = {
+  level: string
+  text?: string
+  slug?: string
+}
 
 export const Post: DocumentType<string> = defineDocumentType(() => ({
   name: 'Post',
@@ -29,6 +36,11 @@ export const Post: DocumentType<string> = defineDocumentType(() => ({
     tags: {
       type: 'list',
       of: { type: 'string' },
+    },
+    toc: {
+      type: 'boolean',
+      required: false,
+      default: false
     }
   },
   computedFields: {
@@ -37,6 +49,25 @@ export const Post: DocumentType<string> = defineDocumentType(() => ({
       resolve: (post: PostData): ReadTimeResults => readingTime(post.body.raw)
     },
     url: { type: 'string', resolve: (post: PostData) => `/blog/${post._raw.flattenedPath}` },
+    headings: {
+      type: 'json',
+      resolve: async (post: PostData) => {
+        const headingsRegex = /\n(?<flag>#{1,6})\s+(?<content>.+)/g;
+        const slugger = new GithubSlugger()
+        const headings: HeadingData[] = Array.from(post.body.raw.matchAll(headingsRegex)).map(
+          ({groups}) => {
+            const flag = groups?.flag
+            const content = groups?.content
+            return {
+              level: flag?.length == 1 ? 'one' : flag?.length == 2 ? 'two' : 'three',
+              text: content,
+              slug: content ? slugger.slug(content) : undefined
+            };
+          }
+        )
+        return headings
+      }
+    }
   },
 }))
 
