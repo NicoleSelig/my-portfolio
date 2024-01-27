@@ -3,6 +3,7 @@ import { Post } from "contentlayer/generated";
 import Link from "next/link";
 import Image from "next/image";
 import Tag from "../Elements/Tag";
+import { slug } from "github-slugger";
 
 type PostLayout1Props = {
   post: Post;
@@ -24,7 +25,7 @@ export default function PostLayout1({ post }: PostLayout1Props) {
       <div className="absolute top-0 left-0 bottom-0 right-0 h-full bg-gradient-to-b from-transparent from-0% to-dark/90 rounded-xl" />
       <div className="w-full absolute bottom-0 p-10 z-20">
         {post.tags && post.tags.length > 0 && (
-          <Tag link={`/categories/${post.tags[0]}`} name={post.tags[0]} props={{className:"px-6 text-small py-2 !border"}} />
+          <Tag link={`/categories/${slug(post.tags[0])}`} name={post.tags[0]} props={{className:"px-6 text-small py-2 !border"}} />
         )}
         <Link href={post.url} className="mt-6">
           <h2 className="font-bold capitalize text-2xl text-light mt-4">

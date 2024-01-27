@@ -3,6 +3,7 @@ import Image from "next/image";
 import { sortPostsByDate } from "@/src/app/utils";
 import Link from "next/link";
 import Tag from "../Elements/Tag";
+import { slug } from "github-slugger";
 
 export type CoverSectionProps = {
   posts: Post[];
@@ -26,7 +27,7 @@ export default function CoverSection({ posts }: CoverSectionProps) {
         <div className="absolute w-3/4 p-16 flex flex-col items-start justify-center text-light">
           {latestPost.tags && latestPost.tags.length > 0 && (
             <Tag
-              link={`/categories/${latestPost.tags[0]}`}
+              link={`/categories/${slug(latestPost.tags[0])}`}
               name={latestPost.tags[0]}
             />
           )}

@@ -5,6 +5,7 @@ import Tag from "../../components/Elements/Tag";
 import Image from "next/image";
 import PostDetails from "../../components/Post/PostDetails";
 import RenderMdx from "../../components/Post/RenderMdx";
+import { slug } from 'github-slugger';
 import { HeadingData } from "@/contentlayer.config";
 
 export const generateStaticParams = async () =>
@@ -27,7 +28,7 @@ const PostLayout = ({ params }: { params: { slug: string } }) => {
           {post.tags && post.tags.length > 0 && (
             <Tag
               name={post.tags[0]}
-              link={`/categories/${post.tags[0]}`}
+              link={`/categories/${slug(post.tags[0])}`}
               props={{ className: "px-6 text-sm py-2" }}
             />
           )}

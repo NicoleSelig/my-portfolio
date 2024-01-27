@@ -5,7 +5,7 @@ type tagProps = {
   link: string;
   name: string;
   props?: {
-    className: string;
+    className: string | undefined;
   };
 };
 
