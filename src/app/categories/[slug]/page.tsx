@@ -48,12 +48,12 @@ export default function CategoryPage({params}: CategoriesParams) {
     })
 
     return(
-        <article>
-            <div>
-                <h1>
+        <article className="mt-12 flex flex-col text-dark">
+            <div className="px-32 flex flex-col">
+                <h1 className="mt-6 font-semibold text-5xl">
                     #{params.slug}
                 </h1>
-                <span>Discover more categories and expand your knowledge!</span>
+                <span className="mt-2 inline-block">Discover more categories and expand your knowledge!</span>
             </div>
             <Categories categories={allCategories} currentSlug={params.slug} />
 

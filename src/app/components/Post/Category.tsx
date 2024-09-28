@@ -20,7 +20,7 @@ export default function Category({
     <Link
       href={link}
       className={addClasses(
-        "inline-block py2 px-10 rounded-full font-semibold border-2 border-solid border-dark hover:scale-105 transition-all ease duration-200 m-2",
+        "inline-block py2 px-10 rounded-full font-full border-2 border-solid border-dark hover:scale-105 transition-all ease duration-200 m-2",
         props?.className || "",
         active ? "bg-dark text-light" : "bg-light text-dark"
       )}
