@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "@hookform/error-message": "^2.0.1",
+    "@supabase/auth-helpers-nextjs": "^0.10.0",
+    "@supabase/supabase-js": "^2.45.4",
     "contentlayer": "^0.3.4",
     "date-fns": "^3.0.6",
     "github-slugger": "^2.0.0",

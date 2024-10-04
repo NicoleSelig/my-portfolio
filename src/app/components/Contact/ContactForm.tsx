@@ -13,7 +13,6 @@ export default function ContactForm() {
   });
 
   const onSubmit = (data: FormData) => console.log(data);
-  console.log(errors);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className='flex w-full flex-col items-start space-y-6 mt-12 text-xl text-center font-medium leading-relaxed font-in'>
