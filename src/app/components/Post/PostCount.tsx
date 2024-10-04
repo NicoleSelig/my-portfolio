@@ -10,10 +10,10 @@ type Props = {
   showCount?: boolean;
 };
 
-export default async function PostCount({
+
+export default function PostCount({
   slug,
   noCount = false,
-  showCount = true,
 }: Props) {
   const [views, setViews] = useState(0);
 
@@ -22,13 +22,9 @@ export default async function PostCount({
     if (!noCount && ref.current) {
       ref.current = false;
       incrementView(slug);
+      getView(slug, setViews)
     }
   }, [slug, noCount]);
-
-  if (showCount) {
-    const count = getView(slug)
-    setViews(await count ?? 0)
-  };
 
   return <div>{views} views</div>;
 }
@@ -46,18 +42,14 @@ async function incrementView(slug: string) {
   }
 }
 
-async function getView(slug: string): Promise<number> {
+async function getView(slug: string, setViews: (views: number) => void): Promise<void> {
   try {
     const { data: views, error } = await supabase.from("views").select("count").match({slug}).single();
 
     if (error) {
         console.error("An error occurred on view count inside try block", error);
     }
-
-    if (views) {
-        return views.count
-    }
-    return 0
+    setViews(views ? views.count : 0)
   } catch (e) {
     console.error("An error occurred on view count", e);
   }
