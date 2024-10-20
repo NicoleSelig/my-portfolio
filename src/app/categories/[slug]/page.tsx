@@ -2,6 +2,7 @@ import { allPosts } from "@/.contentlayer/generated"
 import GitHubSlugger, { slug } from 'github-slugger'
 import Categories from '../../components/Post/Categories'
 import PostLayout3 from "../../components/Post/PostLayout3"
+import { Metadata } from "next"
 
 type CategoriesParams = {
     params: {
@@ -27,6 +28,15 @@ export async function generateStaticParams() {
         }
     })
     return paths
+}
+
+
+export function generateMetadata({ params }: { params: { slug: string } }): Metadata | undefined {
+    const toTitleCase = (str: string) => str.replace(/\w\S*/g, text => text.charAt(0).toUpperCase() + text.substring(1).toLowerCase())
+    return {
+        title: `${toTitleCase(params.slug.replace('-', ' '))} Posts`,
+        description: `Explore my thoughts and findings on ${params.slug === 'all' ? 'various topics' : params.slug} with my posts and tutorials.`,
+    }
 }
 
 

@@ -7,17 +7,51 @@ import PostDetails from "../../components/Post/PostDetails";
 import RenderMdx from "../../components/Post/RenderMdx";
 import { slug } from 'github-slugger';
 import { HeadingData } from "@/contentlayer.config";
+import { siteMetaData } from "../../utils/siteMetaData";
+import { Metadata } from "next";
 
 export const generateStaticParams = async () =>
   allPosts.map((post) => ({ slug: post._raw.flattenedPath }));
 
-export const generateMetadata = ({ params }: { params: { slug: string } }) => {
+export function generateMetadata({ params }: { params: { slug: string } }): Metadata | undefined {
   const post = allPosts.find((post) => post._raw.flattenedPath === params.slug);
-  if (!post) throw new Error(`Post not found for slug: ${params.slug}`);
-  return { title: post.title };
+  if (!post) return;
+
+  const publishedAt = new Date(post.date).toISOString()
+  const modifiedAt = new Date(post.updated || post.date).toISOString()
+
+  const imageList = []
+  // const imageList = [siteMetaData.socialBanner]
+  if(post.image) {
+    typeof post.image.filePath === 'string' ?
+    imageList.push(siteMetaData.siteUrl + post.image.filePath.replace('../../../../public', '')) : post.image
+  }
+
+  const ogImages = imageList.map((img) => {
+    return { url: img.includes('http') ? img: siteMetaData.siteUrl + img}
+  })
+
+  const authors = post.author ? [post.author] : [siteMetaData.author]
+
+  return {
+    title: post.title,
+    description: post.description,
+    openGraph: {
+      title: post.title,
+      description: post.description,
+      url: siteMetaData.siteUrl + post.url,
+      siteName: siteMetaData.title,
+      locale: 'en_US',
+      type: 'article',
+      publishedTime: publishedAt,
+      modifiedTime: modifiedAt,
+      images: ogImages,
+      authors: authors.length > 0 ? authors: [siteMetaData.author]
+    }
+  };
 };
 
-const PostLayout = ({ params }: { params: { slug: string } }) => {
+export function PostLayout({ params }: { params: { slug: string } }) {
   const post = allPosts.find((post) => post._raw.flattenedPath === params.slug);
   if (!post) throw new Error(`Post not found for slug: ${params.slug}`);
 
