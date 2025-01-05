@@ -1,4 +1,4 @@
-// import Link from "next/link";
+import Link from "next/link";
 import AboutCoverSection from "../../components/About/AboutCoverSection";
 import Skills from "../../components/About/Skills";
 import { siteMetaData } from "../../utils/siteMetaData";
@@ -14,13 +14,13 @@ export default function About() {
         <>
         <AboutCoverSection />
         <Skills />
-            {/* <h2 className="mt-8 font-semibold text-2xl self-start mx-20 text-dark">
+            <h2 className="mt-8 font-semibold text-2xl self-start mx-20 text-dark">
                 Have a question? Reach out from{" "}
             <Link href="/contact" className="!underline underline-offset-2">
                 here
             </Link>{" "}
                 and let&apos;s make it happen!
-            </h2> */}
+            </h2>
         </>
     );
 }

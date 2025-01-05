@@ -50,9 +50,9 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
   };
 };
 
-export function PostLayout({ params }: { params: { slug: string } }) {
+export default function PostLayout({ params }: { params: { slug: string } }) {
   const post = allPosts.find((post) => post.isPublished && post._raw.flattenedPath === params.slug);
-  if (!post) throw new Error(`Post not found for slug: ${params.slug}`);
+  if (!post) return;
 
   return (
     <article>
@@ -118,4 +118,3 @@ export function PostLayout({ params }: { params: { slug: string } }) {
   );
 };
 
-export default PostLayout;

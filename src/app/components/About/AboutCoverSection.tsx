@@ -19,7 +19,7 @@ export default function AboutCoverSection() {
                     I&apos;m Nicole.
                 </h2>
                 <p className='font-medium mt-4 text-base'>
-                    I'm a software engineer working for SEP in Carmel, Indiana.
+                    I&apos;m a software engineer working for SEP in Carmel, Indiana.
                 </p>
                 <p className='font-medium mt-4 text-base'>
                     I have spent the last {thisYear - startYear} years working across different areas of Cloud Engineering, DevOps, Automation, and Backend Development.

@@ -6,7 +6,7 @@ import RecentPosts from './components/Home/RecentPosts'
 import About from './(about)/about/page'
 
 export default function Home() {
-  const publishedPosts = allPosts.filter((post) => post.isPublished )
+  // const publishedPosts = allPosts.filter((post) => post.isPublished )
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <About/>
