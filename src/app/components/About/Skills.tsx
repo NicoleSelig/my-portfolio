@@ -17,7 +17,7 @@ export default function Skills() {
   return (
     <section className="w-full flex flex-col p-20 border-b-2 border-solid border-dark text-dark">
       <span className="font-semibold text-4xl text-accent">
-        I'm comfortable in..
+        I&apos;m comfortable in..
       </span>
       <ul className="flex flex-wrap mt-8 justify-start">
         {SkillList.map((item: string, key: number) => {

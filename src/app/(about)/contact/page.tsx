@@ -14,7 +14,7 @@ export default function Contact() {
         <div className="w-3/5 flex flex-col justify-center px-16 pb-8">
             <h2 className="font-bold capitalize text-4xl text-center">Let&apos;s Connect!</h2>
             <p className="font-medium mt-4 text-base text-center">
-                My inbox is always open. Whether you have a question or just want to say &quot;hi!&quot;, I’ll try my best to get back to you!
+                My inbox is always open. Whether you have a question or just want to say &quot;Hi!&quot;, I’ll try my best to get back to you!
             </p>
             <ContactForm/>
         </div>
