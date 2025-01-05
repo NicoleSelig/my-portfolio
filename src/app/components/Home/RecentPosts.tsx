@@ -8,6 +8,7 @@ type RecentPostsProps = {
 };
 
 export default function RecentPosts({ posts }: RecentPostsProps) {
+  if(posts.length === 0) return
   const sorted = sortPostsByDate(posts);
   return (
     <section className="w-full mt-32 px-32 flex flex-col items-center justify-center">

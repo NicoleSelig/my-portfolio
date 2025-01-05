@@ -44,6 +44,7 @@ export default function CategoryPage({params}: CategoriesParams) {
     const allCategories = ["all"]
 
     const posts = allPosts.filter((post) => {
+        if(!post.isPublished) return
         return post.tags?.some((tag) => {
             const slugified = slug(tag)
             if(!allCategories.includes(slugified)) {

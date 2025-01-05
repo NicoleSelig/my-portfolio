@@ -10,6 +10,7 @@ export type CoverSectionProps = {
 };
 
 export default function CoverSection({ posts }: CoverSectionProps) {
+  if(posts.length === 0) return
   const sorted = sortPostsByDate(posts);
   const latestPost = sorted[0];
   return (
