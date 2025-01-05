@@ -58,7 +58,7 @@ export default function CategoryPage({params}: CategoriesParams) {
     })
 
     return(
-        <article className="mt-12 flex flex-col text-dark">
+        <article className="mt-12 flex flex-col text-dark dark:text-light">
             <div className="px-32 flex flex-col">
                 <h1 className="mt-6 font-semibold text-5xl">
                     #{params.slug}

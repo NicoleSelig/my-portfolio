@@ -1,13 +1,22 @@
-import type { Metadata } from 'next'
-import { Inter, Manrope } from 'next/font/google'
-import './globals.css'
-import { addClasses } from './utils'
-import Header from './components/Header'
-import Footer from './components/Footer'
-import { siteMetaData } from './utils/siteMetaData'
+import type { Metadata } from "next";
+import { Inter, Manrope } from "next/font/google";
+import "./globals.css";
+import { addClasses } from "./utils";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import { siteMetaData } from "./utils/siteMetaData";
+import Script from "next/script";
 
-const inter = Inter({ subsets: ['latin'] , display: 'swap', variable: "--font-in"})
-const manrope = Manrope({ subsets: ['latin'] , display: 'swap', variable: "--font-mr"})
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-in",
+});
+const manrope = Manrope({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-mr",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteMetaData.siteUrl),
@@ -21,8 +30,8 @@ export const metadata: Metadata = {
     url: siteMetaData.siteUrl,
     siteName: siteMetaData.title,
     // images: [siteMetaData.socialBanner],
-    locale: 'en-US',
-    type: 'website',
+    locale: "en-US",
+    type: "website",
   },
   robots: {
     index: true,
@@ -31,31 +40,38 @@ export const metadata: Metadata = {
       index: true,
       follow: false,
       noimageindex: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1
-    }
-  }
-}
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+};
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <html lang="en">
-      <body className={
-        addClasses(
+      <body
+        className={addClasses(
           inter.variable,
           manrope.variable,
-          'font-mr bg-light dark:bg-dark'
+          "font-mr bg-light dark:bg-dark"
         )}
-        > 
-          <Header />
-          {children}
-          <Footer/>
-        </body>
+      >
+        <Script id="theme-switcher" strategy="beforeInteractive">
+          {`if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    document.documentElement.classList.add('dark')
+  } else {
+    document.documentElement.classList.remove('dark')
+  }`}
+        </Script>
+        <Header />
+        {children}
+        <Footer />
+      </body>
     </html>
-  )
+  );
 }

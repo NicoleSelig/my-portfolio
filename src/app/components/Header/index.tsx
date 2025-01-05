@@ -1,9 +1,12 @@
+'use client'
 import React from 'react'
 import Logo from './Logo'
 import Link from 'next/link'
 import { GitHubIcon, LinkedInIcon, SunIcon } from '../Icons'
+import { useThemeSwitch } from '../Hooks/useThemeSwitch'
 
-export default function header() {
+export default function Header() {
+    const [mode, setMode] = useThemeSwitch()
     return (
         <header className="w-full p-4 px-10 flex items-center justify-between">
             <Logo/>
@@ -11,7 +14,7 @@ export default function header() {
                 <Link href="/" className='mr-4'>Home</Link>
                 <Link href="/about" className='mx-4'>About</Link>
                 <Link href="/contact" className='mx-4'>Contact</Link>
-                <button><SunIcon/></button>
+                <button onClick={() => setMode(mode === 'light' ? 'dark' : 'light')}><SunIcon/></button>
             </nav>
             <div>
                 <a href='http://www.linkedin.com/in/NicoleSelig' className="inline-block w-12 h-12 mr-2"><LinkedInIcon className="hover:scale-125 transition-all ease duration-200"/></a>

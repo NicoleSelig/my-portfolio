@@ -1,4 +1,3 @@
-// app/blog/[slug]/page.tsx
 import { format, parseISO } from "date-fns";
 import { allPosts } from "contentlayer/generated";
 import Tag from "../../components/Elements/Tag";
@@ -86,7 +85,7 @@ export function PostLayout({ params }: { params: { slug: string } }) {
       <PostDetails slug={params.slug} post={post} />
       <div className="grid grid-cols-12 gap-16 mt-8 px-10">
             <div className="col-span-4">
-              <details className='border-[1px] border-dark border-solid text-dark rounded-lg p-4 sticky top-6
+              <details className='border-[1px] border-dark border-solid text-dark dark:text-light rounded-lg p-4 sticky top-6
               max-h-[80vh] over-hidden overflow-y-auto'>
                 <summary className="text-lg font-semibold capitalize cursor-pointer">Table of Contents</summary>
                 <ul className="mt-4 font-in text-base">
@@ -96,12 +95,12 @@ export function PostLayout({ params }: { params: { slug: string } }) {
                         <a href={`#${heading.slug}`} 
                           data-level={heading.level}
                           className="data-[level=two]:pl-0 data[level=two]:pt-2
-                          data-[level=two]:border-t border-solid border-dark/40
+                          data-[level=two]:border-t border-solid border-dark/40 dark:border-light/40
                           data-[level=three]:pl-6
                           flex items-center justify-start"
                         > 
-                        {heading.level === 'three' ? 
-                          <span className="flex w-1 h-1 rounded-full bg-dark mr-2">&nbsp;</span> 
+                        {heading.level === 'three' ?
+                          <span className="flex w-1 h-1 rounded-full bg-dark mr-2">&nbsp;</span>  
                           : null}
                           <span>{heading.text}</span>
                         </a>
