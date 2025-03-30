@@ -1,66 +1,31 @@
 import * as React from "react";
 import { addClasses } from "../utils";
 
-type IconProps = {
-  className?: string;
-  props?: React.JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>;
-};
+interface IconProps extends React.SVGProps<SVGSVGElement> {
+  theme?: "light" | "dark";
+}
 
-export function LinkedInIcon({ className, ...props }: IconProps) {
+export function LinkedInIcon({
+  className,
+  ...props
+}: IconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width={42}
-      height={42}
-      data-name="Flat Line"
-      viewBox="-2 -2 25 25"
+      width={44}
+      height={44}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke={"currentColor"}
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
       {...props}
-      className={
-        className ? addClasses(className, "w-full h-auto") : "w-full h-auto"
-      }
+      className={className}
     >
-      <rect
-        width={18}
-        height={18}
-        x={3}
-        y={3}
-        rx={1}
-        style={{
-          fill: "#2ca9bc",
-          strokeWidth: 2,
-        }}
-      />
-      <path
-        d="M16 17v-3a2 2 0 0 0-2-2h0a2 2 0 0 0-2 2v3"
-        style={{
-          fill: "none",
-          stroke: "#000",
-          strokeLinecap: "round",
-          strokeLinejoin: "round",
-          strokeWidth: 2,
-        }}
-      />
-      <path
-        d="M7.95 7.5h.1"
-        style={{
-          fill: "none",
-          stroke: "#000",
-          strokeLinecap: "round",
-          strokeLinejoin: "round",
-          strokeWidth: 2.5,
-        }}
-      />
-      <path
-        d="M8 12v5m4-3v-2m9 8V4a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1Z"
-        data-name="primary"
-        style={{
-          fill: "none",
-          stroke: "#000",
-          strokeLinecap: "round",
-          strokeLinejoin: "round",
-          strokeWidth: 2,
-        }}
-      />
+      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+      <rect x="2" y="9" width="4" height="12" />
+      <circle cx="4" cy="4" r="2" />
     </svg>
   );
 }

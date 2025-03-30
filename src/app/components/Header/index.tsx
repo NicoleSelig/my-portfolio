@@ -6,11 +6,14 @@ import { GitHubIcon, LinkedInIcon, SunIcon, MoonIcon } from "../Icons";
 import { useThemeSwitch } from "../Hooks/useThemeSwitch";
 
 export default function Header() {
-  const [mode, setMode] = useThemeSwitch();
+  const [mode, setMode] = useThemeSwitch() as [
+    "light" | "dark",
+    (mode: "light" | "dark") => void
+  ];
   return (
     <header className="w-full p-4 px-10 flex items-center justify-between">
       <Logo />
-      <nav className="w-max py-10 px-10 border border-solid border-surfaceHover rounded-full font-medium capitalize flex items-center fixed top-6 right-1/2 translate-x-1/2 bg-surface/80 backdrop-blur-sm z-50">
+      <nav className="w-max py-5 px-10 border border-solid border-surfaceHover rounded-full font-medium capitalize flex items-center fixed top-6 right-1/2 translate-x-1/2 bg-surface/80 backdrop-blur-sm z-50">
         <Link
           href="/"
           className="mr-4 text-xl hover:text-accent transition-colors"
@@ -41,7 +44,10 @@ export default function Header() {
           href="http://www.linkedin.com/in/NicoleSelig"
           className="inline-block w-12 h-12 mr-2"
         >
-          <LinkedInIcon className="hover:scale-125 transition-all ease duration-200 stroke-dark dark:stroke-[#9c9cf4] hover:stroke-[#9c9cf4] fill-dark dark:fill-[#9c9cf4] hover:fill-[#9c9cf4]" />
+          <LinkedInIcon
+            className="hover:scale-125 transition-all ease duration-200  stroke-dark dark:stroke-[#7dc4e4] hover:stroke-[#7dc4e4]"
+            theme={mode}
+          />
         </a>
         <a
           href="https://github.com/nlselig"
