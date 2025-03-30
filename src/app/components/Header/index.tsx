@@ -11,7 +11,10 @@ export default function Header() {
     <header className="w-full p-4 px-10 flex items-center justify-between">
       <Logo />
       <nav className="w-max py-10 px-10 border border-solid border-surfaceHover rounded-full font-medium capitalize flex items-center fixed top-6 right-1/2 translate-x-1/2 bg-surface/80 backdrop-blur-sm z-50">
-        <Link href="/" className="mr-4 text-xl hover:text-accent transition-colors">
+        <Link
+          href="/"
+          className="mr-4 text-xl hover:text-accent transition-colors"
+        >
           Home
         </Link>
         <Link
