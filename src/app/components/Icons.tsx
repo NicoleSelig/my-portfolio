@@ -113,9 +113,9 @@ export function Logo({ className, ...props }: IconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width={70}
-      height={70}
-      viewBox="0 200 900 600"
+      width={200}
+      height={100}
+      viewBox="100 200 700 600"
       preserveAspectRatio="xMidYMid meet"
       {...props}
       className={
