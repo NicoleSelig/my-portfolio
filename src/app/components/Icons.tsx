@@ -13,7 +13,7 @@ export function LinkedInIcon({ className, ...props }: IconProps) {
       width={42}
       height={42}
       data-name="Flat Line"
-      viewBox="0 0 42 42"
+      viewBox="0 0 25 25"
       {...props}
       className={
         className ? addClasses(className, "w-full h-auto") : "w-full h-auto"
@@ -71,7 +71,7 @@ export function GitHubIcon({ className, ...props }: IconProps) {
       xmlns="http://www.w3.org/2000/svg"
       width={44}
       height={44}
-      viewBox="0 0 44 44"
+      viewBox="0 0 23 23"
       {...props}
       className={
         className ? addClasses(className, "w-full h-auto") : "w-full h-auto"
