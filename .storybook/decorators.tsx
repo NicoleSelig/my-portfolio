@@ -16,7 +16,9 @@ const manrope = Manrope({
 });
 
 export const withThemeProvider = (Story: any, context: any) => {
-  const isDark = context.globals.theme === "dark";
+  // Get theme from story parameters
+  const theme = context.parameters?.theme || context.globals.theme;
+  const isDark = theme === "dark";
 
   // Set theme on mount and when it changes
   React.useEffect(() => {
@@ -31,7 +33,8 @@ export const withThemeProvider = (Story: any, context: any) => {
       className={addClasses(
         inter.variable,
         manrope.variable,
-        "font-mr bg-light dark:bg-dark min-h-screen"
+        "font-mr bg-light dark:bg-dark min-h-screen",
+        isDark ? "dark" : "light"
       )}
     >
       <Story />
