@@ -2,10 +2,10 @@ import Link from "next/link";
 import { addClasses } from "../../utils";
 
 type tagProps = {
-  link: string;
+  link?: string;
   name: string;
   props?: {
-    className: string | undefined;
+    className?: string;
   };
 };
 
@@ -14,7 +14,7 @@ export default function tag({ link = "#", name, props }: tagProps) {
     <Link
       href={link}
       className={addClasses(
-        "inline-block py-3 px-10 bg-dark text-light rounded-full capitalize font-semibold border-solid border-light border-2 hover:scale-105 transition-all ease duration-200",
+        "inline-block py-3 px-10 bg-surface text-light rounded-full capitalize font-semibold border-solid border-surfaceHover border-2 hover:bg-surfaceHover hover:text-accent transition-all ease duration-200",
         props?.className || ""
       )}
     >

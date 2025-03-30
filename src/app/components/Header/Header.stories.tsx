@@ -12,7 +12,11 @@ const meta: Meta<typeof Header> = {
 export default meta;
 type Story = StoryObj<typeof Header>;
 
-export const Light: Story = {};
+export const Light: Story = {
+  parameters: {
+    theme: "light",
+  },
+};
 
 export const Dark: Story = {
   parameters: {

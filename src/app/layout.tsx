@@ -11,11 +11,13 @@ const inter = Inter({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-in",
+  fallback: ["Segoe UI", "system-ui", "sans-serif"],
 });
 const manrope = Manrope({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-mr",
+  fallback: ["Segoe UI", "system-ui", "sans-serif"],
 });
 
 export const metadata: Metadata = {
