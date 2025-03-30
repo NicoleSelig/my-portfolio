@@ -39,15 +39,17 @@ export default function Header() {
       <div>
         <a
           href="http://www.linkedin.com/in/NicoleSelig"
-          className="inline-block w-12 h-12 mr-2 hover:text-accent transition-colors"
+          className="inline-block w-12 h-12 mr-2"
         >
-          <LinkedInIcon className="hover:scale-125 transition-all ease duration-200" />
+          <LinkedInIcon className="hover:scale-125 transition-all ease duration-200 stroke-dark dark:stroke-[#9c9cf4] hover:stroke-[#9c9cf4] fill-dark dark:fill-[#9c9cf4] hover:fill-[#9c9cf4]" />
         </a>
         <a
-          href="http://www.github.com/NicoleSelig"
-          className="inline-block w-13 h-13 mr-2 hover:text-accent transition-colors"
+          href="https://github.com/nlselig"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-block w-13 h-13 mr-2"
         >
-          <GitHubIcon className="hover:scale-125 transition-all ease duration-200" />
+          <GitHubIcon className="hover:scale-125 transition-all ease duration-200 stroke-dark dark:stroke-[#9c9cf4] hover:stroke-[#9c9cf4] fill-dark dark:fill-[#9c9cf4] hover:fill-[#9c9cf4]" />
         </a>
       </div>
     </header>
