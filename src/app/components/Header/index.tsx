@@ -1,19 +1,29 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import Logo from "./Logo";
 import Link from "next/link";
 import { GitHubIcon, LinkedInIcon, SunIcon, MoonIcon } from "../Icons";
 import { useThemeSwitch } from "../Hooks/useThemeSwitch";
+import Hamburger from "../Hamburger";
 
 export default function Header() {
   const [mode, setMode] = useThemeSwitch() as [
     "light" | "dark",
     (mode: "light" | "dark") => void
   ];
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   return (
     <header className="w-full p-4 px-10 flex items-center justify-between">
       <Logo />
-      <nav className="w-max py-5 px-10 border border-solid border-surfaceHover rounded-full font-medium capitalize flex items-center fixed top-6 right-1/2 translate-x-1/2 bg-surface/80 backdrop-blur-sm z-50">
+      <div className="md:hidden">
+        <Hamburger
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          isOpen={isMenuOpen}
+          className="w-16 h-16"
+        />
+      </div>
+      <nav className="hidden md:flex w-max py-4 px-10 border border-solid border-surfaceHover rounded-full font-bold capitalize items-center fixed top-6 right-1/2 translate-x-1/2 bg-surface/80 backdrop-blur-sm z-50">
         <Link
           href="/"
           className="mr-4 text-xl hover:text-accent transition-colors"
@@ -34,12 +44,12 @@ export default function Header() {
         </Link>
         <button
           onClick={() => setMode(mode === "light" ? "dark" : "light")}
-          className="hover:text-accent transition-colors pl-5"
+          className="hover:scale-125 transition-all ease duration-200 pl-5"
         >
           {mode === "light" ? <MoonIcon /> : <SunIcon />}
         </button>
       </nav>
-      <div>
+      <div className="hidden md:flex">
         <a
           href="http://www.linkedin.com/in/NicoleSelig"
           className="inline-block w-12 h-12 mr-2"
