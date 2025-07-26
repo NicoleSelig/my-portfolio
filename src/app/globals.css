@@ -63,9 +63,11 @@ code > [data-line]::before {
   /* Other styling */
   display: inline-block;
   width: 1rem;
-  margin-right: 2rem;
+  margin-right: 1.5rem;
+  padding-right: 0.5rem;
   text-align: right;
-  color: rgba(var(--foreground-rgb), 0.6);
+  color: rgba(var(--foreground-rgb), 0.4);
+  border-right: 1px solid rgba(var(--foreground-rgb), 0.1);
 }
  
 code[data-line-numbers-max-digits="2"] > [data-line]::before {
@@ -83,12 +85,15 @@ code[data-line-numbers-max-digits="3"] > [data-line]::before {
   padding-right: 4px;
   border-radius: 2px;
   border-left: 2px solid rgb(var(--accent-color));
+  margin-left: -2px; /* Offset the border to keep alignment */
 }
 
 [data-highlighted-chars] {
   background-color: rgba(var(--code-bg), 0.8);
   padding: 2px;
   border-radius: 2px;
+  color: rgb(var(--foreground-rgb));
+  box-shadow: 0 0 0 1px rgba(var(--accent-color), 0.2);
 }
 
 /** TODO: does not work as intended. cannot find data-rehype-pretty-code-fragment upon inspection*/
@@ -102,8 +107,11 @@ code[data-line-numbers-max-digits="3"] > [data-line]::before {
   background-color: rgb(var(--accent-color));
   color: rgb(var(--background-start-rgb));
   padding: 4px 8px;
-  font-size: 1rem;
+  font-size: 0.85rem;
+  font-family: var(--font-in);
   border-end-start-radius: 4px;
+  font-weight: 600;
+  letter-spacing: 0.025em;
 }
 
 [data-rehype-pretty-code-caption] {

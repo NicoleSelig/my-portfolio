@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 export function useThemeSwitch() {
   const preferDarkQuery = "(prefers-color-scheme:dark)";
   const storageKey = "theme";
-  
+
   const toggleTheme = (theme: string) => {
     if (theme === "dark") {
       document.documentElement.classList.add("dark");
@@ -26,7 +26,7 @@ export function useThemeSwitch() {
   // Initialize state with a function to ensure we only compute the initial state once
   const [mode, setMode] = useState(() => {
     // We're on the server or in a non-browser environment
-    if (typeof window === 'undefined') return 'dark';
+    if (typeof window === "undefined") return "dark";
     return getUserPreference();
   });
 
@@ -37,10 +37,10 @@ export function useThemeSwitch() {
       setMode(savedMode);
       toggleTheme(savedMode);
     };
-    
+
     // Run on mount to set initial theme
     initializeTheme();
-    
+
     // Listen for system preference changes
     const mediaQuery = window.matchMedia(preferDarkQuery);
     const handleSystemThemeChange = (e: MediaQueryListEvent) => {
@@ -51,10 +51,10 @@ export function useThemeSwitch() {
         toggleTheme(newMode);
       }
     };
-    
+
     // Modern API for event listener
     mediaQuery.addEventListener("change", handleSystemThemeChange);
-    
+
     return () => {
       mediaQuery.removeEventListener("change", handleSystemThemeChange);
     };

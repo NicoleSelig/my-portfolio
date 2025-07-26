@@ -13,7 +13,7 @@ export default function Header() {
     (mode: "light" | "dark") => void
   ];
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  
+
   // Prevent body scrolling when menu is open
   useEffect(() => {
     if (isMenuOpen) {
@@ -21,7 +21,7 @@ export default function Header() {
     } else {
       document.body.style.overflow = "unset";
     }
-    
+
     return () => {
       document.body.style.overflow = "unset";
     };
@@ -39,9 +39,13 @@ export default function Header() {
       </div>
 
       {/* Mobile Menu */}
-      <div className={`fixed inset-0 z-50 bg-dark/90 backdrop-blur-md transform transition-transform duration-300 ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'} lg:hidden`}>
+      <div
+        className={`fixed inset-0 z-50 bg-dark/90 backdrop-blur-md transform transition-transform duration-300 ${
+          isMenuOpen ? "translate-x-0" : "translate-x-full"
+        } lg:hidden`}
+      >
         <div className="flex justify-end p-4">
-          <button 
+          <button
             onClick={() => setIsMenuOpen(false)}
             className="text-light text-4xl"
             aria-label="Close menu"
@@ -73,10 +77,7 @@ export default function Header() {
           </Link>
           <ThemeSwitcher className="my-4" />
           <div className="flex mt-8">
-            <a
-              href="http://www.linkedin.com/in/NicoleSelig"
-              className="mx-4"
-            >
+            <a href="http://www.linkedin.com/in/NicoleSelig" className="mx-4">
               <LinkedInIcon
                 className="w-8 h-8 stroke-light hover:stroke-accent"
                 theme={mode}
@@ -88,14 +89,12 @@ export default function Header() {
               rel="noopener noreferrer"
               className="mx-4"
             >
-              <GitHubIcon 
-                className="w-8 h-8 stroke-light hover:stroke-accent fill-light hover:fill-accent" 
-              />
+              <GitHubIcon className="w-8 h-8 stroke-light hover:stroke-accent fill-light hover:fill-accent" />
             </a>
           </div>
         </nav>
       </div>
-      
+
       {/* Desktop Navigation */}
       <nav className="hidden lg:flex w-max py-4 px-10 border border-solid border-surfaceHover rounded-full font-bold capitalize items-center fixed top-6 right-1/2 translate-x-1/2 bg-surface/80 backdrop-blur-sm z-50">
         <Link
