@@ -3,8 +3,9 @@
 import { useEffect, useState } from "react";
 
 export function useThemeSwitch() {
-  const preferDarkQuery = "(prefers-color-schema:dark)";
+  const preferDarkQuery = "(prefers-color-scheme:dark)";
   const storageKey = "theme";
+  
   const toggleTheme = (theme: string) => {
     if (theme === "dark") {
       document.documentElement.classList.add("dark");
@@ -19,24 +20,38 @@ export function useThemeSwitch() {
     if (userPref) {
       return userPref;
     }
-    return "dark";
+    return window.matchMedia(preferDarkQuery).matches ? "dark" : "light";
   };
 
   const [mode, setMode] = useState("dark");
 
   useEffect(() => {
-    const mediaQuery = window.matchMedia(preferDarkQuery);
-    const handleChange = () => {
-      const newMode = getUserPreference();
-      setMode(newMode);
-      toggleTheme(newMode);
+    // Initialize theme based on user preference on component mount
+    const initializeTheme = () => {
+      const savedMode = getUserPreference();
+      setMode(savedMode);
+      toggleTheme(savedMode);
     };
-    handleChange();
-
-    mediaQuery.addEventListener("change", handleChange);
-
+    
+    // Run on mount to set initial theme
+    initializeTheme();
+    
+    // Listen for system preference changes
+    const mediaQuery = window.matchMedia(preferDarkQuery);
+    const handleSystemThemeChange = (e: MediaQueryListEvent) => {
+      // Only update if user hasn't explicitly set a preference
+      if (!window.localStorage.getItem(storageKey)) {
+        const newMode = e.matches ? "dark" : "light";
+        setMode(newMode);
+        toggleTheme(newMode);
+      }
+    };
+    
+    // Modern API for event listener
+    mediaQuery.addEventListener("change", handleSystemThemeChange);
+    
     return () => {
-      mediaQuery.removeEventListener("change", handleChange);
+      mediaQuery.removeEventListener("change", handleSystemThemeChange);
     };
   }, []);
 
