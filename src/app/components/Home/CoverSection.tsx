@@ -15,7 +15,7 @@ export default function CoverSection({ posts }: CoverSectionProps) {
   const latestPost = sorted[0];
   return (
     <div className="w-full inline-block">
-      <article className="flex flex-col items-start justify-end mx-10 relative h-[85vh]">
+      <article className="flex flex-col items-start justify-end mx-2 sm:mx-4 md:mx-10 relative h-[50vh] md:h-[85vh]">
       <Image
           src={latestPost.image.filePath.replace("../public", "")}
           placeholder="blur"
@@ -25,7 +25,7 @@ export default function CoverSection({ posts }: CoverSectionProps) {
           className="w-full h-full object-center object-cover rounded-3xl"
         />
         <div className="absolute top-0 left-0 bottom-0 right-0 h-full bg-gradient-to-b from-transparent from-0% to-dark/90 rounded-3xl -z-5" />
-        <div className="absolute w-3/4 p-16 flex flex-col items-start justify-center text-light">
+        <div className="absolute w-full md:w-3/4 p-4 md:p-8 lg:p-16 flex flex-col items-start justify-center text-light">
           {latestPost.tags && latestPost.tags.length > 0 && (
             <Tag
               link={`/categories/${slug(latestPost.tags[0])}`}

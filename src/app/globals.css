@@ -6,6 +6,16 @@ html{
    scroll-behavior: smooth;
 }
 
+/* Add default text colors for light/dark mode */
+@layer base {
+  html {
+    @apply text-dark;
+  }
+  html.dark {
+    @apply text-light;
+  }
+}
+
 /* Prevent flash of wrong theme */
 html.dark {
   color-scheme: dark;

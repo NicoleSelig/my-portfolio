@@ -10,7 +10,7 @@ type PostLayout3Props = {
 
 export default function PostLayout3({ post }: PostLayout3Props) {
   return (
-    <div className="group flex flex-col items-center text-dark">
+    <div className="group flex flex-col items-center text-dark dark:text-light">
       <Link
         href={post.url}
         className="h-full rounded-xl overflow-hidden"
@@ -44,7 +44,7 @@ export default function PostLayout3({ post }: PostLayout3Props) {
             </span>
           </h2>
         </Link>
-        <span className="capitalize text-dark/50 font-semibold text-base">{format(new Date(post.date), "MMMM dd, yyyy")}</span>
+        <span className="capitalize text-dark/50 dark:text-light/50 font-semibold text-base">{format(new Date(post.date), "MMMM dd, yyyy")}</span>
       </div>
     </div>
   );
