@@ -76,5 +76,7 @@ export default makeSource({
   documentTypes: [Post],
   mdx: {
     remarkPlugins: [remarkGfm], rehypePlugins: [rehypeSlug, [rehypeAutolinkHeadings, {behavior: 'append'}], [rehypePrettyCode, codeOptions]] as Pluggable[]
-  }
+  },
+  // Configure the public directory for image processing
+  disableImportAliasWarning: true,
 })
