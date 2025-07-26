@@ -11,10 +11,7 @@ type PostLayout3Props = {
 export default function PostLayout3({ post }: PostLayout3Props) {
   return (
     <div className="group flex flex-col items-center text-dark dark:text-light">
-      <Link
-        href={post.url}
-        className="h-full rounded-xl overflow-hidden"
-      >
+      <Link href={post.url} className="h-full rounded-xl overflow-hidden">
         <Image
           src={post.image.filePath.replace("../public", "")}
           placeholder="blur"
@@ -23,7 +20,7 @@ export default function PostLayout3({ post }: PostLayout3Props) {
           width={post.image.width}
           height={post.image.height}
           className="aspect-[4/3] w-full h-full object-cover object-center group-hover:scale-105 transition-all
-          ease duration-300" 
+          ease duration-300"
         />
       </Link>
       <div className="flex flex-col w-full mt-4">
@@ -44,7 +41,9 @@ export default function PostLayout3({ post }: PostLayout3Props) {
             </span>
           </h2>
         </Link>
-        <span className="capitalize text-dark/50 dark:text-light/50 font-semibold text-base">{format(new Date(post.date), "MMMM dd, yyyy")}</span>
+        <span className="capitalize text-dark/50 dark:text-light/50 font-semibold text-base">
+          {format(new Date(post.date), "MMMM dd, yyyy")}
+        </span>
       </div>
     </div>
   );

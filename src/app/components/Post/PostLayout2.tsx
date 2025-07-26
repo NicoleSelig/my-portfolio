@@ -44,7 +44,9 @@ export default function PostLayout2({ post }: PostLayout2Props) {
             </span>
           </h2>
         </Link>
-        <span className="capitalize text-dark/50 dark:text-light/50 font-semibold text-base">{format(new Date(post.date), "MMMM dd, yyyy")}</span>
+        <span className="capitalize text-dark/50 dark:text-light/50 font-semibold text-base">
+          {format(new Date(post.date), "MMMM dd, yyyy")}
+        </span>
       </div>
     </div>
   );
