@@ -34,14 +34,21 @@ export default function Hamburger({
       className={`flex items-center justify-center ${className}`}
       aria-label="Toggle menu"
     >
-      <Lottie
-        lottieRef={lottieRef}
-        animationData={hamburgerAnimation}
-        loop={false}
-        autoplay={false}
-        initialSegment={isOpen ? [60, 60] : [0, 0]} // Show X when open, hamburger when closed
-        style={{ width: 80, height: 80 }}
-      />
+      <div className="text-accent dark:text-accentDark [&_svg]:fill-accent dark:[&_svg]:fill-accentDark [&_path]:fill-accent dark:[&_path]:fill-accentDark">
+        <Lottie
+          lottieRef={lottieRef}
+          animationData={hamburgerAnimation}
+          loop={false}
+          autoplay={false}
+          initialSegment={isOpen ? [60, 60] : [0, 0]} // Show X when open, hamburger when closed
+          style={{ 
+            width: 80, 
+            height: 80,
+            filter: 'brightness(0) saturate(100%) invert(45%) sepia(50%) saturate(300%) hue-rotate(10deg) brightness(110%) contrast(95%)'
+          }}
+          className="dark:[filter:brightness(0)_saturate(100%)_invert(45%)_sepia(50%)_saturate(300%)_hue-rotate(10deg)_brightness(110%)_contrast(95%)]"
+        />
+      </div>
     </button>
   );
 }
