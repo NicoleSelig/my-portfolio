@@ -2,7 +2,7 @@ import { Post } from "contentlayer/generated";
 import { format, parseISO } from "date-fns";
 import Link from "next/link";
 import { ReadTimeResults } from "reading-time";
-import { slug } from 'github-slugger';
+import { slug } from "github-slugger";
 // import PostCount from "./PostCount";
 
 type PostDetailsProps = {
@@ -10,10 +10,13 @@ type PostDetailsProps = {
   slug: string;
 };
 
-export default function PostDetails({ slug: postSlug, post }: PostDetailsProps) {
+export default function PostDetails({
+  slug: postSlug,
+  post,
+}: PostDetailsProps) {
   const readTime = post.readingTime as ReadTimeResults;
   return (
-    <div className="px-10 bg-accent text-light py-2 flex items-center justify-around flex-wrap text-xl font-medium mx-10 rounded-lg">
+    <div className="px-10 bg-accent dark:bg-accentDark text-light py-2 flex items-center justify-around flex-wrap text-xl font-medium mx-10 rounded-lg">
       <time className="m-3">{format(parseISO(post.date), "LLLL d, yyyy")}</time>
       {/* <span>
         <PostCount slug={postSlug}/>

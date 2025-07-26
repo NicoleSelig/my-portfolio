@@ -25,7 +25,7 @@ export default function PostLayout3({ post }: PostLayout3Props) {
       </Link>
       <div className="flex flex-col w-full mt-4">
         {post.tags && post.tags.length > 0 && (
-          <span className="uppercase text-accent font-semibold text-sm">
+          <span className="uppercase text-accent dark:text-accentDark font-semibold text-sm">
             {post.tags[0]}
           </span>
         )}
@@ -33,7 +33,7 @@ export default function PostLayout3({ post }: PostLayout3Props) {
         <Link href={post.url} className="inline-block my-1">
           <h2 className="font-semibold capitalize text-lg">
             <span
-              className="bg-gradient-to-r from-accent/50 to-accent/50 
+              className="bg-gradient-to-r from-accent/50 to-accent/50 dark:from-accentDark/50 dark:to-accentDark/50
               bg-[length:0px_6px] group-hover:bg-[length:100%_6px] bg-left-bottom
               bg-no-repeat transition[background-size] duration-500"
             >
