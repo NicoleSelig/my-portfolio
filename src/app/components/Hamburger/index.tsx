@@ -1,6 +1,6 @@
 "use client";
 import React, { useRef, useEffect } from "react";
-import Lottie from "lottie-react";
+import Lottie, { LottieRefCurrentProps } from "lottie-react";
 import hamburgerAnimation from "../../../../public/hamburger-menu-lottie.json";
 
 interface HamburgerProps {
@@ -14,14 +14,16 @@ export default function Hamburger({
   onClick,
   isOpen = false,
 }: HamburgerProps) {
-  const lottieRef = useRef<any>(null);
+  const lottieRef = useRef<LottieRefCurrentProps | null>(null);
 
   useEffect(() => {
     if (lottieRef.current) {
       if (isOpen) {
-        lottieRef.current.playSegments([60, 60], true);
+        // Animate from hamburger to X
+        lottieRef.current.playSegments([0, 60], true);
       } else {
-        lottieRef.current.playSegments([0, 30], true);
+        // Animate from X to hamburger
+        lottieRef.current.playSegments([60, 0], true);
       }
     }
   }, [isOpen]);
@@ -37,7 +39,7 @@ export default function Hamburger({
         animationData={hamburgerAnimation}
         loop={false}
         autoplay={false}
-        initialSegment={isOpen ? [60, 60] : [0, 0]}
+        initialSegment={isOpen ? [60, 60] : [0, 0]} // Show X when open, hamburger when closed
         style={{ width: 80, height: 80 }}
       />
     </button>

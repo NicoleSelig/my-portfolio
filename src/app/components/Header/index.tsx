@@ -14,16 +14,16 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <header className="w-full p-4 px-10 flex items-center justify-between">
+    <header className="w-full p-4 px-4 lg:px-10 flex items-center justify-between">
       <Logo />
-      <div className="md:hidden">
+      <div className="lg:hidden">
         <Hamburger
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           isOpen={isMenuOpen}
           className="w-16 h-16"
         />
       </div>
-      <nav className="hidden md:flex w-max py-4 px-10 border border-solid border-surfaceHover rounded-full font-bold capitalize items-center fixed top-6 right-1/2 translate-x-1/2 bg-surface/80 backdrop-blur-sm z-50">
+      <nav className="hidden lg:flex w-max py-4 px-10 border border-solid border-surfaceHover rounded-full font-bold capitalize items-center fixed top-6 right-1/2 translate-x-1/2 bg-surface/80 backdrop-blur-sm z-50">
         <Link
           href="/"
           className="mr-4 text-xl hover:text-accent transition-colors"
@@ -49,7 +49,7 @@ export default function Header() {
           {mode === "light" ? <MoonIcon /> : <SunIcon />}
         </button>
       </nav>
-      <div className="hidden md:flex">
+      <div className="hidden lg:flex">
         <a
           href="http://www.linkedin.com/in/NicoleSelig"
           className="inline-block w-12 h-12 mr-2"
