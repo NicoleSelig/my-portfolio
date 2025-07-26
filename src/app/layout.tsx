@@ -64,11 +64,23 @@ export default function RootLayout({
         )}
       >
         <Script id="theme-switcher" strategy="beforeInteractive">
-          {`if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-    document.documentElement.classList.add('dark')
+          {`
+  // This script runs before React hydration to prevent flash of wrong theme
+  function getThemePreference() {
+    if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+      return localStorage.getItem('theme');
+    }
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  }
+  
+  const theme = getThemePreference();
+  
+  if (theme === 'dark') {
+    document.documentElement.classList.add('dark');
   } else {
-    document.documentElement.classList.remove('dark')
-  }`}
+    document.documentElement.classList.remove('dark');
+  }
+  `}
         </Script>
         <Header />
         {children}

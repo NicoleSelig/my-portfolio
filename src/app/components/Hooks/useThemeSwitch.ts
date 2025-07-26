@@ -23,7 +23,12 @@ export function useThemeSwitch() {
     return window.matchMedia(preferDarkQuery).matches ? "dark" : "light";
   };
 
-  const [mode, setMode] = useState("dark");
+  // Initialize state with a function to ensure we only compute the initial state once
+  const [mode, setMode] = useState(() => {
+    // We're on the server or in a non-browser environment
+    if (typeof window === 'undefined') return 'dark';
+    return getUserPreference();
+  });
 
   useEffect(() => {
     // Initialize theme based on user preference on component mount

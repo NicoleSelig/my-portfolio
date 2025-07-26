@@ -6,6 +6,16 @@ html{
    scroll-behavior: smooth;
 }
 
+/* Prevent flash of wrong theme */
+html.dark {
+  color-scheme: dark;
+}
+
+/* Add transition for smooth theme switching */
+html {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
 h1>a>.icon.icon-link::before,
 h2>a>.icon.icon-link::before,
 h3>a>.icon.icon-link::before {
@@ -19,18 +29,22 @@ h2>a, h3>a {
 
 
 
+/* Light mode variables */
 :root {
+  --foreground-rgb: 36, 39, 58;
+  --background-start-rgb: 240, 240, 240;
+  --background-end-rgb: 255, 255, 255;
+  --accent-color: 198, 160, 246;
+  --code-bg: 240, 240, 240;
+}
+
+/* Dark mode variables */
+.dark {
   --foreground-rgb: 202, 211, 245;
   --background-start-rgb: 36, 39, 58;
   --background-end-rgb: 36, 39, 58;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 202, 211, 245;
-    --background-start-rgb: 36, 39, 58;
-    --background-end-rgb: 36, 39, 58;
-  }
+  --accent-color: 245, 169, 127;
+  --code-bg: 54, 58, 79;
 }
 
 body {
@@ -51,7 +65,7 @@ code > [data-line]::before {
   width: 1rem;
   margin-right: 2rem;
   text-align: right;
-  color: #a5adcb;
+  color: rgba(var(--foreground-rgb), 0.6);
 }
  
 code[data-line-numbers-max-digits="2"] > [data-line]::before {
@@ -63,16 +77,16 @@ code[data-line-numbers-max-digits="3"] > [data-line]::before {
 }
 
 [data-highlighted-line] {
-  background-color: rgba(54, 58, 79, 0.5) !important;
+  background-color: rgba(var(--code-bg), 0.5) !important;
   padding: 2px;
   padding-left: 0;
   padding-right: 4px;
   border-radius: 2px;
-  border-left: 2px solid #c6a0f6;
+  border-left: 2px solid rgb(var(--accent-color));
 }
 
 [data-highlighted-chars] {
-  background-color: rgba(54, 58, 79, 0.8);
+  background-color: rgba(var(--code-bg), 0.8);
   padding: 2px;
   border-radius: 2px;
 }
@@ -85,8 +99,8 @@ code[data-line-numbers-max-digits="3"] > [data-line]::before {
 [data-rehype-pretty-code-title] {
   position: absolute;
   right: 0;
-  background-color: #c6a0f6;
-  color: #24273a;
+  background-color: rgb(var(--accent-color));
+  color: rgb(var(--background-start-rgb));
   padding: 4px 8px;
   font-size: 1rem;
   border-end-start-radius: 4px;
@@ -97,5 +111,5 @@ code[data-line-numbers-max-digits="3"] > [data-line]::before {
   width: 100%;
   text-align: center;
   font-size: 1rem;
-  color: #a5adcb;
+  color: rgba(var(--foreground-rgb), 0.7);
 }
