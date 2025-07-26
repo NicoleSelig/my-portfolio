@@ -7,6 +7,7 @@ interface IconProps extends React.SVGProps<SVGSVGElement> {
 
 export function LinkedInIcon({
   className,
+  theme,
   ...props
 }: IconProps) {
   return (
@@ -30,7 +31,7 @@ export function LinkedInIcon({
   );
 }
 
-export function GitHubIcon({ className, ...props }: IconProps) {
+export function GitHubIcon({ className, theme, ...props }: IconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -51,7 +52,7 @@ export function GitHubIcon({ className, ...props }: IconProps) {
   );
 }
 
-export function SunIcon({ className, ...props }: IconProps) {
+export function SunIcon({ className, theme, ...props }: IconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -77,7 +78,7 @@ export function SunIcon({ className, ...props }: IconProps) {
   );
 }
 
-export function MoonIcon({ className, ...props }: IconProps) {
+export function MoonIcon({ className, theme, ...props }: IconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -109,7 +110,7 @@ export function MoonIcon({ className, ...props }: IconProps) {
   );
 }
 
-export function Logo({ className, ...props }: IconProps) {
+export function Logo({ className, theme, ...props }: IconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

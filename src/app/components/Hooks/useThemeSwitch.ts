@@ -16,6 +16,8 @@ export function useThemeSwitch() {
   };
 
   const getUserPreference = () => {
+    if (typeof window === "undefined") return "light"; // Default for SSR
+    
     const userPref = window.localStorage.getItem(storageKey);
     if (userPref) {
       return userPref;
@@ -23,14 +25,11 @@ export function useThemeSwitch() {
     return window.matchMedia(preferDarkQuery).matches ? "dark" : "light";
   };
 
-  // Initialize state with a function to ensure we only compute the initial state once
-  const [mode, setMode] = useState(() => {
-    // We're on the server or in a non-browser environment
-    if (typeof window === "undefined") return "dark";
-    return getUserPreference();
-  });
+  // Use a consistent default for server-side rendering to prevent hydration mismatch
+  const [mode, setMode] = useState("light"); // Always start with "light" for SSR
 
   useEffect(() => {
+    // We need to run this in useEffect to ensure it only runs on the client
     // Initialize theme based on user preference on component mount
     const initializeTheme = () => {
       const savedMode = getUserPreference();

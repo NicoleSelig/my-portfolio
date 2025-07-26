@@ -1,11 +1,16 @@
 "use client";
 import React, { useState, useEffect } from "react";
+import dynamic from "next/dynamic";
 import Logo from "./Logo";
 import Link from "next/link";
-import { GitHubIcon, LinkedInIcon } from "../Icons";
 import { useThemeSwitch } from "../Hooks/useThemeSwitch";
 import Hamburger from "../Hamburger";
-import ThemeSwitcher from "../ThemeSwitcher";
+import { useRouter } from "next/navigation";
+
+// Dynamically import theme-dependent components with SSR disabled
+const ThemeSwitcher = dynamic(() => import("../ThemeSwitcher"), { ssr: false });
+const LinkedInIcon = dynamic(() => import("../Icons").then(mod => ({ default: mod.LinkedInIcon })), { ssr: false });
+const GitHubIcon = dynamic(() => import("../Icons").then(mod => ({ default: mod.GitHubIcon })), { ssr: false });
 
 export default function Header() {
   const [mode, setMode] = useThemeSwitch() as [
@@ -13,6 +18,7 @@ export default function Header() {
     (mode: "light" | "dark") => void
   ];
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const router = useRouter();
 
   // Prevent body scrolling when menu is open
   useEffect(() => {
@@ -80,7 +86,6 @@ export default function Header() {
             <a href="http://www.linkedin.com/in/NicoleSelig" className="mx-4">
               <LinkedInIcon
                 className="w-8 h-8 stroke-light hover:stroke-accent"
-                theme={mode}
               />
             </a>
             <a
@@ -123,8 +128,7 @@ export default function Header() {
           className="inline-block w-12 h-12 mr-2"
         >
           <LinkedInIcon
-            className="hover:scale-125 transition-all ease duration-200  stroke-dark dark:stroke-[#7dc4e4] hover:stroke-[#7dc4e4]"
-            theme={mode}
+            className="hover:scale-125 transition-all ease duration-200 stroke-dark dark:stroke-[#7dc4e4] hover:stroke-[#7dc4e4]"
           />
         </a>
         <a

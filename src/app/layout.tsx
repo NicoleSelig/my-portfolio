@@ -65,20 +65,49 @@ export default function RootLayout({
       >
         <Script id="theme-switcher" strategy="beforeInteractive">
           {`
-  // This script runs before React hydration to prevent flash of wrong theme
-  function getThemePreference() {
-    if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
-      return localStorage.getItem('theme');
+  // On the server-side, we'll always default to light mode for hydration consistency
+  // This ensures our server and client rendering match during hydration
+  if (typeof window !== 'undefined') {
+    // This code only runs on the client
+    const getThemePreference = () => {
+      // Check localStorage first
+      if (typeof localStorage !== 'undefined') {
+        const storedTheme = localStorage.getItem('theme');
+        if (storedTheme) {
+          return storedTheme;
+        }
+      }
+      
+      // Then check system preference
+      if (window.matchMedia) {
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      
+      // Default to light mode if neither is available
+      return 'light';
+    };
+    
+    // Get the initial theme
+    const theme = getThemePreference();
+    
+    // Apply the theme immediately to avoid flicker
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
     }
-    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-  }
-  
-  const theme = getThemePreference();
-  
-  if (theme === 'dark') {
-    document.documentElement.classList.add('dark');
-  } else {
-    document.documentElement.classList.remove('dark');
+    
+    // Also set up a listener for system theme changes (when no user preference is saved)
+    if (window.matchMedia && !localStorage.getItem('theme')) {
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+        const newTheme = e.matches ? 'dark' : 'light';
+        if (newTheme === 'dark') {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+      });
+    }
   }
   `}
         </Script>
