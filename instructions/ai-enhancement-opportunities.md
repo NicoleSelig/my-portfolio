@@ -148,3 +148,11 @@ This document outlines potential areas where AI can be leveraged to enhance the 
 - Progressive enhancement approach (site works without AI)
 - Performance monitoring to prevent AI features from slowing the site
 - Regular security audits of AI integrations
+
+### Human-AI Collaboration
+
+- Clear attribution policies for AI-assisted content
+- Human review workflows for AI-generated suggestions
+- Feedback loops to improve AI performance over time
+- Hybrid authoring tools that combine human creativity with AI assistance
+- Community guidelines for AI-generated content and interactions
