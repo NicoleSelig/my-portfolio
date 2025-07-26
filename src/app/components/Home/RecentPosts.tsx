@@ -25,11 +25,10 @@ export default function RecentPosts({ posts }: RecentPostsProps) {
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 lg:gap-16 mt-8 md:mt-16">
-        {sorted.slice(5, 11).map((post: Post, index) => {
+        {sorted.slice(0, 6).map((post: Post, index) => {
           return (
             <article key={index} className="col-span-1 row-span-1 relative">
-              {" "}
-              <PostLayout3 post={post} />{" "}
+              <PostLayout3 post={post} />
             </article>
           );
         })}
